@@ -3,7 +3,7 @@ module Quotes
 
     resource :quotes do
 
-      desc "List quotes or Show single quote"
+      desc "List quotes or show a single quote by id"
 
       params do
         optional :id, type: Integer, default: nil
