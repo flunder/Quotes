@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  #resources :quotes
+  resources :quotes
 
-  #root 'quotes#index'
+  root 'quotes#index'
 
   mount API => '/'
 
