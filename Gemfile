@@ -35,6 +35,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'grape'
 gem 'lograge'
 
+gem 'bootstrap', '~> 4.0.0.alpha1'
+gem 'bh', '~> 1.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
