@@ -5,7 +5,7 @@ class QuotesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @quotes = Quote.all.reverse_order
+    @quotes = current_user.quotes.reverse_order
   end
 
   def show
@@ -19,7 +19,9 @@ class QuotesController < ApplicationController
   end
 
   def create
+
     @quote = Quote.new(quote_params)
+    current_user.quotes << @quote
 
     respond_to do |format|
       if @quote.save
@@ -57,7 +59,6 @@ class QuotesController < ApplicationController
     def set_quote
       @quote = Quote.find(params[:id])
     end
-
 
     def quote_params
       params.require(:quote).permit(:quote, :by, :image)

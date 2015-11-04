@@ -11,7 +11,26 @@
 <body>
 
 <div class="container">
-    <%= yield %>
+    
+    <!--
+        testing123@larsattacks.co.uk
+    -->
+    
+    <header>
+
+        <h1>
+            <%= link_to "*Q*", :root %>
+        </h1>
+        
+        <ul class="hmenu">
+          <%= render 'devise/menu/registration_items' %>
+          <%= render 'devise/menu/login_items' %>
+        </ul>
+    </header>
+
+    <main>
+        <%= yield %>
+    </main>
 </div>
 
 </body>

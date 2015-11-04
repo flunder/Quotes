@@ -1,6 +1,10 @@
 html { font-size: 12px; }
 body { margin: 2rem; }
+header { overflow: hidden; }
 
-h1 { margin-bottom: 2rem; }
+h1 { margin-bottom: 2rem; float: left; }
 
 .quote-wrap { margin-bottom: 2rem; }
+
+ul.hmenu { float: right; }
+ul.hmenu li { float: left; list-style-type: none; margin-left: 10px; line-height: 4rem; }
