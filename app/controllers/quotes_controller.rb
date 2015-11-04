@@ -1,11 +1,12 @@
 class QuotesController < ApplicationController
 
   before_action :set_quote, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:edit, :update, :destroy]
 
   def index
-    @quotes = current_user.quotes.reverse_order
+    @quotes = @user.quotes.reverse_order
   end
 
   def show
@@ -58,6 +59,16 @@ class QuotesController < ApplicationController
 
     def set_quote
       @quote = Quote.find(params[:id])
+    end
+
+    def set_user
+
+      if params['user']
+        @user = User.find_by_id(params['user'])
+      else
+        @user = current_user
+      end
+
     end
 
     def quote_params
