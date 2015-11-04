@@ -1,5 +1,6 @@
-<%= form_for @quote, layout: :horizontal  do |f| %>
+<%= form_for @quote, layout: :horizontal, html: { multipart: true } do |f| %>
   <%= f.text_area :quote,  label: 'Quote',  placeholder: '' %>
   <%= f.text_field :by,    label: 'Author', placeholder: '' %>
+  <%= f.file_field :image, label: 'Image', placeholder: '' %>
   <%= f.submit 'Create', class: 'pull-right'%>
 <% end %>

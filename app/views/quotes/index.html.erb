@@ -9,10 +9,17 @@
     <div class="col-sm-12 quote-wrap row">
 
         <blockquote class="blockquote">
+
+            <% if quote.image? %>
+                <%= image_tag quote.image.url %>
+            <% end %>
+
             <p><%= quote.quote %></p>
+
             <% if quote.by.present? %>
                 <footer>by <cite title="Source Title"><%= quote.by %></cite></footer>
             <% end %>
+
         </blockquote>
 
         <%= link_to 'Edit', edit_quote_path(quote), class: "btn btn-secondary btn-sm" %>
