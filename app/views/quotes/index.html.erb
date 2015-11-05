@@ -26,3 +26,20 @@
 <% end %>
 
 <%= link_to 'Add another Quote', new_quote_path, class: "btn btn-info" %><br/><br/>
+
+<div class="api-json col-sm-6">
+
+    <% if @user %>
+    <div class="row">
+        <b>Get this users daily random quote: </b><br/>
+        <%= link_to "#{root_url}api/v1/quote?userid=#{@user.id}", "#{root_url}api/v1/quote?userid=#{@user.id}" %><br/>
+    </div>
+
+    <div class="row">
+        <b>Get all quotes of this user: </b><br/>
+        <%= link_to "#{root_url}api/v1/quotes?userid=#{@user.id}", "#{root_url}api/v1/quotes?userid=#{@user.id}" %><br/>
+    </div>
+    <% end %>
+    
+</div>
+
