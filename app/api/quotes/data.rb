@@ -2,18 +2,32 @@ module Quotes
 
   class Data < Grape::API
 
+    helpers do
+      def current_user
+        @current_user = params[:userid]
+      end
+    end
+
     resource :quotes do
 
       desc "List all quotes"
 
       get do
 
+        if current_user
+
+          @quotes = User.find_by_id(@current_user).quotes
+
+        else
+
           @quotes = Quote.all
 
-          response = {
-            total: @quotes.size,
-            quotes: @quotes
-          }
+        end
+
+        response = {
+          total: @quotes.size,
+          quotes: @quotes
+        }
 
       end
 

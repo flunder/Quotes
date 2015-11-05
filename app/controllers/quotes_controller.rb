@@ -17,13 +17,9 @@ class QuotesController < ApplicationController
   end
 
   def edit
-
     if current_user != @quote.user
-      redirect_to(:back, notice: "Sry, You're not allowed to do this.")
-     else
-      puts "CORRECT"
-     end
-
+      redirect_to(:root, notice: "Sry, You're not allowed to do this.")
+    end
   end
 
   def create
