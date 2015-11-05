@@ -15,13 +15,9 @@ module Quotes
       get do
 
         if current_user
-
           @quotes = User.find_by_id(@current_user).quotes
-
         else
-
           @quotes = Quote.all
-
         end
 
         response = {
@@ -50,7 +46,8 @@ module Quotes
         else
 
           @today = Date.today.to_s
-          @today_quote = Day.where(date: @today).first
+          @user_id = current_user ? User.find_by_id(@current_user).id : 0
+          @today_quote = Day.where(date: @today, user_id: @user_id).first
 
           if @today_quote
 
@@ -58,9 +55,13 @@ module Quotes
 
           else
 
-            @random_id = Random.rand(Quote.all.size) + 1
+            if current_user
+              @random_id = Random.rand(User.find_by_id(@current_user).quotes.all.size) + 1
+            else
+              @random_id = Random.rand(Quote.all.size) + 1
+            end
 
-            Day.create(date: @today, quote_id: @random_id)
+            Day.create(date: @today, quote_id: @random_id, user_id: @user_id)
 
             return Quote.find_by_id(@random_id);
 
