@@ -46,7 +46,9 @@ module Quotes
         else
 
           @today = Date.today.to_s
+
           @user_id = current_user ? User.find_by_id(@current_user).id : 0
+
           @today_quote = Day.where(date: @today, user_id: @user_id).first
 
           if @today_quote
@@ -56,11 +58,18 @@ module Quotes
           else
 
             if current_user
-              @random_id = Random.rand(User.find_by_id(@current_user).quotes.all.size) + 1
+
+              # Build an array of ids of this users quotes [2,4,7]
+              @user_quote_ids = User.find_by_id(@current_user).quotes.map { |q| q.id }
+
+              # Pick on for them
+              @random_id = @user_quote_ids[Random.rand(@user_quote_ids.size)]
+
             else
               @random_id = Random.rand(Quote.all.size) + 1
             end
 
+            # Store the result for the day and user ( no user will be user_id = 0)
             Day.create(date: @today, quote_id: @random_id, user_id: @user_id)
 
             return Quote.find_by_id(@random_id);
